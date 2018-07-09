@@ -39,12 +39,13 @@ void graph_destroy(Graph g){
 	free(g);
 }
 
-boolean graph_addVertex(Graph g, Type data){
+boolean graph_addVertex(Graph g, Type data){ //No supe hacer esta
 	if(g!=NULL){
 		Node newNode;
 		g->array[g->vertices]=data;
 		g->vertices++;
-		
+		newNode->first=g;
+		newNode->next=NULL;
 	}
 }
 
