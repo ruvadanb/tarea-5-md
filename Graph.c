@@ -5,11 +5,12 @@ struct strNode{
 };
 
 typedef struct strNode Node;
-
-struct strGraph{
+ 
+struct strGraph{ //No sé si esté bien esta estructura
 	Type *array=(Type)malloc(sizeof(Type));
 	int vertices, aristas;
 	CMP cmpFunction;
+	Print printFunction;
 };
 
 Node* newNode(Type data){
@@ -23,12 +24,13 @@ Node* newNode(Type data){
 	return new;
 }
 
-Graph graph_create(CMP comparar){
+Graph graph_create(CMP comparar, Print printFunction){
 	Graph newGraph=(Graph)malloc(sizeof(struct strGraph));
 	if(newGraph!=NULL){
 		newGraph->aristas=0;
 		newGraph->vertices=0;
 		newGraph->cmpFunction=comparar;
+		newGraph->printFunction=printFunction;
 	}
 	return newGraph;
 }
@@ -42,6 +44,36 @@ boolean graph_addVertex(Graph g, Type data){
 		Node newNode;
 		g->array[g->vertices]=data;
 		g->vertices++;
-		newNode->id;
+		
 	}
+}
+
+boolean graph_addEdge(Graph g, Type source, Type skin){
+	
+}
+
+unsigned long graph_vertexCount(Graph g){
+	if(g!=NULL)
+		return g->vertices;
+	else
+		return -1;
+}
+
+unsigned long graph_edgeCount(Graph g){
+	if(g!=NULL)
+		return g->aristas;
+	else
+		return -1;
+}
+
+unsigned long graph_outDegree(Graph g, Type source){
+	
+}
+
+boolean graph_hasEdge(Graph g, Type source, Type skin){
+	
+}
+
+boolean graph_print(Graph g, Print p){
+	
 }
