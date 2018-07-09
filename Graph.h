@@ -4,9 +4,7 @@ typedef struct strGraph *Graph;
 typedef void (*Print) (void *);
 
 typedef int (*CMP)(void *, void *);
-typedef Type (*Clone)(Type);
-typedef void (*MyFree)(Type);
-typedef void (*Print)(Type);
+typedef void (*Print) (void *);
 
 void graph_destroy(Graph g);
 boolean graph_addVertex(Graph g, Type data);
