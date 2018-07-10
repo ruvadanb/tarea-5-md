@@ -40,17 +40,18 @@ Graph graph_create(CMP comparar, Print printFunction){
 		newGraph->vertices=0;
 		newGraph->cmpFunction=comparar;
 		newGraph->printFunction=printFunction;
-		newGraph->array = (Node)malloc(sizeof(Node));
+		newGraph->array = (Node*)malloc(sizeof(Node));
 	}
 	return newGraph;
 }
 
 void graph_destroy(Graph g){
-	int i;
+	int i=0;
 	while(g->array[i]->next!=NULL){
 		free(g->array[i]);
 		i++;
 	}
+	free(g->array[i]);
 	free(g);
 }
 
@@ -58,13 +59,18 @@ boolean graph_addVertex(Graph g, Type data){ //No supe hacer esta
 	if(g!=NULL){
 		Node nuevo;
 		nuevo=newNode(data, &contador);
-		g->array[g->vertices]=data;
+		g->array=(Node*)realloc(g->array, sizeof(Node)*(contador+1));
+		g->array[g->vertices]=nuevo;
 		g->vertices++;
+		return true;
 	}
+	else
+		return false;
 }
 
 boolean graph_addEdge(Graph g, Type source, Type skin){
-
+	int i=0;
+	while()
 }
 
 unsigned long graph_vertexCount(Graph g){
