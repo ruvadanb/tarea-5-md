@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "grafo.h"
+#include "Graph.h"
 
 int contador=0;
 
