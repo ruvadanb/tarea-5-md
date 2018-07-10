@@ -69,8 +69,22 @@ boolean graph_addVertex(Graph g, Type data){ //No supe hacer esta
 }
 
 boolean graph_addEdge(Graph g, Type source, Type skin){
-	int i=0;
-	while()
+	int i=0, inicial=-1, final=-1;
+	for(i=0; i<g->vertices; i++){
+		if(comparar(g->array[i]->Data, source)==1){
+			inicial=i;
+		}
+		if(comparar(g->array[i]->Data, skin)==1){
+			final=i;
+		}
+	}
+	if(inicial!=-1&&final!=-1){
+		g->array[inicial]->next=&g->array[final];
+		g->aristas++;
+		return true;
+	} else {
+		return false;
+	}
 }
 
 unsigned long graph_vertexCount(Graph g){
