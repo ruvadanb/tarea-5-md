@@ -7,7 +7,7 @@ struct strNode{
 typedef struct strNode Node;
  
 struct strGraph{ //No sé si esté bien esta estructura
-	Node *array=(Type)malloc(sizeof(Type));  //Como tiene que ser un arreglo de vertices mejor usar Node
+	Node *array=(Node*)malloc(sizeof(Node*));  //Como tiene que ser un arreglo de vertices mejor usar Node
 	int vertices, aristas;
 	CMP cmpFunction;
 	Print printFunction;
