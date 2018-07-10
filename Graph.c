@@ -13,6 +13,8 @@ struct strGraph{ //No sé si esté bien esta estructura
 	Print printFunction;
 };
 
+typedef struct strGraph *Graph;
+
 Node* newNode(Type data){
 	Node *new=(Node*)malloc(sizeof(Node));
 	if(new!=NULL){
