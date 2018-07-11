@@ -27,14 +27,17 @@ int main(void) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 	puts("!!!Graph Retweets!!!");
 	FILE *vertex_tweets = fopen("RETWEETS.csv", "r");
-	Vertex tweets_data[150000];
-	if(!vertex_tweets){
+
+	if(vertex_tweets == NULL){
 		printf("Error al abrir archivo.");
 		return 0;
 	}
+	printf("Comenzando...\n");
+	Vertex tweets_data;
+
 	short i = 0, k = 0;
 	char aux;
-
+	Graph g1 = graph_create(compareValues, printValue, indexValue);
 	while(!feof(vertex_tweets)){
 		char buff_retweet[20]="";
 		char buff_tweet[20]="";
@@ -48,17 +51,13 @@ int main(void) {
 			buff_tweet[i] = aux;
 			i++;
 		}
-		strcpy(tweets_data[k].retweet_id,buff_retweet);
-		strcpy(tweets_data[k].tweet_id,buff_tweet);
-		k++;
+		strcpy(tweets_data.retweet_id,buff_retweet);
+		strcpy(tweets_data.tweet_id,buff_tweet);
+		if(graph_addVertex(g1,&tweets_data.retweet_id))printf("Vértice agregado.\t");
+		if(graph_addVertex(g1,&tweets_data.tweet_id))printf("Vértice tweet agregado.\t");
+		if(graph_addEdge(g1,&tweets_data.retweet_id, &tweets_data.tweet_id))printf("Edge agregado. \n");
 	}
-	Graph g1 = graph_create(compareValues, printValue, indexValue);
-	for(i = 0; i < k; i++){
-		if(graph_addVertex(g1,&tweets_data[k].retweet_id))printf("Vértice agregado.\t");
-		if(graph_addVertex(g1,&tweets_data[k].tweet_id))printf("Vértice tweet agregado.\t");
-		if(graph_addEdge(g1,&tweets_data[k].retweet_id, &tweets_data[k].tweet_id))printf("Edge agregado. \n");
-	}
-	graph_destroy(g1);
+
 	printf("End...\n");
 	return EXIT_SUCCESS;
 }
