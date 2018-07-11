@@ -19,7 +19,7 @@ unsigned indexValue(Type, unsigned);
 
 typedef struct {
 	char retweet_id[20]; //edge entre source
-	char tweet_id[20];	//sink
+	char tweet_id[20];	//skin
 }Vertex;
 
 int main(void) {
