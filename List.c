@@ -32,10 +32,10 @@ List list_create(){
 int list_size(List who){
 	return who->size;
 }
-boolean list_add(List who, Type data){
+Bool list_add(List who, Type data){
 	Node newNode=(Node)malloc(sizeof(struct strNode));
 	if (newNode==NULL)
-		return false;
+		return False;
 	newNode->data=data;
 	newNode->next=NULL;
 	if(list_size(who)==0){
@@ -48,14 +48,14 @@ boolean list_add(List who, Type data){
 	}
 	who->Last=newNode;
 	who->size++;
-	return true;
+	return True;
 }
-boolean list_insert(List who, int p, Type data){
+Bool list_insert(List who, int p, Type data){
 	if(p>list_size(who)+1||p<1)
-		return false;
+		return False;
 	Node newNode=(Node)malloc(sizeof(struct strNode));
 	if (newNode==NULL)
-		return false;
+		return False;
 	newNode->data=data;
 	if(p==1){
 		newNode->prior=NULL;
@@ -79,7 +79,7 @@ boolean list_insert(List who, int p, Type data){
 			who->Last=newNode;
 	}
 	who->size++;
-	return true;
+	return True;
 }
 
 Type list_remove(List who, int p){
@@ -119,9 +119,8 @@ void list_set(List who, Type data, int p){
 	}
 }
 void list_destroy(List who){
-	Type temp;
+
 	while(list_size(who)!=0)
-		temp=list_remove(who,1);
+		list_remove(who,1);
 	free(who);
 }
-
