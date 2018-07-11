@@ -102,11 +102,43 @@ unsigned long graph_edgeCount(Graph g){
 }
 
 unsigned long graph_outDegree(Graph g, Type source){
+	int i=0, contador=0;
+	Node temp;
+	while(comparar(g->array[i]->Data, source)!=1)
+		i++;
+	temp = g->array[i];
+	while(temp->next!=NULL){
+		contador++;
+	}
+	return contador;
+}
 
+boolean buscarDatoEnGrafo(Node inicio, Type datoFinal){
+	if(comparar(inicio->Data, datoFinal)==1){
+		return true;
+	} else {
+		return buscarDatoEnGrafo(inicio->next, datoFinal);
+	}
 }
 
 boolean graph_hasEdge(Graph g, Type source, Type skin){
-
+	int i=0, inicial=-1, final=-1;
+	for(i=0; i<g->vertices; i++){
+		if(comparar(g->array[i]->Data, source)==1){
+			inicial=i;
+		}
+		if(comparar(g->array[i]->Data, skin)==1){
+			final=i;
+		}
+	}
+	if(inicial!=-1&&final!=-1){
+		if(buscarDatoEnGrafo(g->array[inicial], skin)==false)
+			return false;
+		else
+			return true;
+	} else {
+		return false;
+	}
 }
 
 boolean graph_print(Graph g, Print p){
