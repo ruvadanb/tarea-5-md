@@ -11,7 +11,7 @@
 typedef enum {false,true} boolean;
 typedef void * Type;
 typedef struct strGraph *Graph;
-typedef void (*Print) (void *);
+typedef void (*Print) (Type);
 typedef int (*CMP)(Type, Type);
 typedef unsigned short(*Index)(Type,unsigned);
 

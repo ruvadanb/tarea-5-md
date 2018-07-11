@@ -22,14 +22,14 @@ struct strGraph{
 	unsigned limit;//Control de arreglo de vertex
 	Print myPrint; //Funciones asociadas
 	CMP myCmp;
-	Index setIndex;
+	Index getIndex;
 };
 Graph graph_create(CMP comparator, Print print, Index index ){
 	Graph new = (Graph)malloc(sizeof(struct strGraph));
 	if(!new) return NULL;
 	new->myCmp = comparator;
 	new->myPrint = print;
-	new->setIndex = index;
+	new->getIndex = index;
 	new->Order = 0;
 	new->Size = 0;
 	new->limit = 100;
@@ -59,7 +59,7 @@ void graph_destroy(Graph g){
 		for(i = 0; i< g->limit; i++){
 			Vertex aux = g->vertex[i];
 			if(aux){
-				aux->id = g->setIndex(aux->Data, newSize);
+				aux->id = g->getIndex(aux->Data, newSize);
 				while(newVertex[aux->id]) aux->id++;
 				newVertex[aux->id]=aux;
 			}
@@ -71,7 +71,7 @@ void graph_destroy(Graph g){
 }*/
 boolean graph_addVertex(Graph g, Type data){
 	if(!g) return false;
-	unsigned id = g->setIndex(data,g->limit);
+	unsigned id = g->getIndex(data,g->limit);
 	if(g->Order == 0){
 		g->vertex = (Vertex*)calloc(g->limit,sizeof(Vertex));
 	}
@@ -92,7 +92,7 @@ boolean graph_addVertex(Graph g, Type data){
 boolean graph_addEdge(Graph g, Type source, Type sink){
 	if(!g) return false;
 	unsigned id;
-	id = g->setIndex(source, g->limit);
+	id = g->getIndex(source, g->limit);
 	while(g->myCmp(g->vertex[id]->Data, source) != 0){
 		id++;
 		if(id==g->limit)id -= g->limit;
@@ -116,7 +116,7 @@ unsigned long graph_outDegree(Graph g, Type source){
 	Vertex temp;
 	unsigned id;
 	if(g){
-		id = g->setIndex(source, g->limit);
+		id = g->getIndex(source, g->limit);
 		temp = g->vertex[id];
 		while(g->myCmp(source, temp->Data)!=0){
 			id++;
@@ -129,7 +129,7 @@ unsigned long graph_outDegree(Graph g, Type source){
 }
 boolean graph_hasEdge(Graph g, Type source, Type sink){
 	if(!g)return false;
-	unsigned id = g->setIndex(source,g->limit);
+	unsigned id = g->getIndex(source,g->limit);
 	while(g->myCmp(g->vertex[id]->Data, source)!= 0){
 		id++;
 		if(id == g->limit) id -= g->limit;
