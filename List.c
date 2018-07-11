@@ -32,7 +32,7 @@ List list_create(){
 int list_size(List who){
 	return who->size;
 }
-Bool list_add(List who, Type data){
+boolean list_add(List who, Type data){
 	Node newNode=(Node)malloc(sizeof(struct strNode));
 	if (newNode==NULL)
 		return false;
@@ -50,7 +50,7 @@ Bool list_add(List who, Type data){
 	who->size++;
 	return true;
 }
-Bool list_insert(List who, int p, Type data){
+boolean list_insert(List who, int p, Type data){
 	if(p>list_size(who)+1||p<1)
 		return false;
 	Node newNode=(Node)malloc(sizeof(struct strNode));
